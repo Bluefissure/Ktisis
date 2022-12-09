@@ -164,7 +164,7 @@ namespace Ktisis.Overlay {
 						BoneSelect.Partial = p;
 						BoneSelect.Index = i;
 					}
-                }
+				}
 			}
 		}
 
