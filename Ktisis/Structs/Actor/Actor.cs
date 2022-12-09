@@ -21,17 +21,17 @@ namespace Ktisis.Structs.Actor {
 		[FieldOffset(0x104)] public RenderMode RenderMode;
 		[FieldOffset(0x1B4)] public uint ModelId;
 
-		[FieldOffset(0x6E0)] public Weapon MainHand;
-		[FieldOffset(0x748)] public Weapon OffHand;
-		[FieldOffset(0x818)] public Equipment Equipment;
-		[FieldOffset(0x840)] public Customize Customize;
+		[FieldOffset(0x6D0)] public Weapon MainHand;
+		[FieldOffset(0x738)] public Weapon OffHand;
+		[FieldOffset(0x808)] public Equipment Equipment;
+		[FieldOffset(0x830)] public Customize Customize;
 
 		[FieldOffset(0xC20)] public ActorGaze Gaze;
 
 		[FieldOffset(0x1A68)] public byte TargetObjectID;
 		[FieldOffset(0x1A6C)] public byte TargetMode;
 
-		public unsafe string? Name => Marshal.PtrToStringAnsi((IntPtr)GameObject.GetName());
+		public unsafe string? Name => Marshal.PtrToStringUTF8((IntPtr)GameObject.GetName());
 
 		public string GetNameOr(string fallback) => ((ObjectKind)GameObject.ObjectKind == ObjectKind.Pc && !Ktisis.Configuration.DisplayCharName) || string.IsNullOrEmpty(Name)? fallback : Name;
 		public string GetNameOrId() => GetNameOr("Actor #" + ObjectID);
@@ -63,7 +63,7 @@ namespace Ktisis.Structs.Actor {
 
 		public unsafe void Equip(EquipIndex index, ItemEquip item) {
 			if (Methods.ActorChangeEquip == null) return;
-			Methods.ActorChangeEquip(GetAddress() + 0x6D0, index, item);
+			Methods.ActorChangeEquip(GetAddress() + 0x6C0, index, item);
 		}
 		public void Equip(List<(EquipSlot, object)> items) {
 			foreach ((EquipSlot slot, object item) in items)
@@ -75,7 +75,7 @@ namespace Ktisis.Structs.Actor {
 
 		public void Equip(int slot, WeaponEquip item) {
 			if (Methods.ActorChangeWeapon == null) return;
-			Methods.ActorChangeWeapon(GetAddress() + 0x6D0, slot, item, 0, 1, 0, 0);
+			Methods.ActorChangeWeapon(GetAddress() + 0x6C0, slot, item, 0, 1, 0, 0);
 		}
 
 		// Change customize - no redraw method

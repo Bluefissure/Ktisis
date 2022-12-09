@@ -19,7 +19,7 @@ namespace Ktisis.Structs.Actor {
 
 		[FieldOffset(0x148)] public unsafe Breasts* Bust;
 
-		[FieldOffset(0x274)] public float Height;
+		[FieldOffset(0x264)] public float Height;
 
 		public unsafe void SyncModelSpace(bool refPose = false) {
 			if (Skeleton == null) return;

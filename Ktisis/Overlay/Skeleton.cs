@@ -122,8 +122,8 @@ namespace Ktisis.Overlay {
 						}
 					}
 
-					// Bone selection & gizmo
-					var gizmo = OverlayWindow.GetGizmo(uniqueName);
+                    // Bone selection & gizmo
+                    var gizmo = OverlayWindow.GetGizmo(uniqueName);
 					if (gizmo != null) {
 						var matrix = Interop.Alloc.GetMatrix(transform);
 
@@ -164,7 +164,7 @@ namespace Ktisis.Overlay {
 						BoneSelect.Partial = p;
 						BoneSelect.Index = i;
 					}
-				}
+                }
 			}
 		}
 
